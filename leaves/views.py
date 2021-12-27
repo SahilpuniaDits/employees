@@ -8,6 +8,7 @@ def login(request):
 
 def signup(request):
     return render(request, 'signup.html')
+
 from rest_framework import status
 from rest_framework import serializers
 from rest_framework import response
