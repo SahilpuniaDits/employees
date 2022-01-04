@@ -58,7 +58,7 @@ class UserLoginSerializer(serializers.Serializer):
                 'access': access_token,
                 'refresh': refresh_token,
                 'email': user.email,
-                # 'role': user.role,
+               
             }
 
             print('---00000', validation)

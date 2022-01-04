@@ -1,5 +1,5 @@
-var email;
-var password;
+var email1;
+var password1;
 var email2;
 var password2;
 
@@ -7,24 +7,26 @@ var password2;
 
 function login2() {
 
-    const email = document.getElementById("Lemail").value
-    const password = document.getElementById("Lpassword").value
+    email1 = document.getElementById("Lemail").value
+    password1 = document.getElementById("Lpassword").value
+
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    console.log(email)
-    console.log(password)
+    
+    console.log(email1)
+    console.log(password1)
 
     alert(csrftoken)
 
     fetch("http://127.0.0.1:8000/api/login/", {
         method: "post",
         body: JSON.stringify({
-            'email': email,
-            'password': password,
+            email: email1,
+            password: password1
         }),
         headers: {
             "content-type": "application/json ; charset=UTF-8",
-            'X-CSRFToken': csrftoken,
-            'Accept': 'application/json',
+            'X-CSRFToken': csrftoken
+            
         },
 
     })
