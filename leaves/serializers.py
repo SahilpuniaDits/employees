@@ -54,7 +54,7 @@
 #                 raise serializers.ValidationError({'user':'please enter valid user credentails'})
 #         else:
 #             raise serializers.ValidationError({'error':'username and password not to be blank'})
-                
+
 # class resetpasswordSerializer(serializers.ModelSerializer):
 #     username=serializers.CharField(max_length=100)
 #     password=serializers.CharField(max_length=100)
@@ -67,7 +67,7 @@
 #         password=self.validated_data['password']
 #         #filtering out whethere username is existing or not, if your username is existing then if condition will allow your username
 #         if User.objects.filter(username=username).exists():
-#         #if your username is existing get the query of your specific username 
+#         #if your username is existing get the query of your specific username
 #             user=User.objects.get(username=username)
 #             #then set the new password for your username
 #             user.set_password(password)
@@ -75,7 +75,6 @@
 #             return user
 #         else:
 #             raise serializers.ValidationError({'error':'please enter valid crendentials'})
-
 
 
 from .models import User
@@ -88,6 +87,8 @@ from django.contrib.auth.hashers import check_password
 
 import jwt
 from rest_framework.permissions import IsAuthenticated
+
+
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -117,6 +118,8 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, data):
         email = data['email']
         password = data['password']
+        print('-----======', password)
+        print('---====', email)
         user = authenticate(email=email, password=password)
 
         if user is None:
@@ -135,6 +138,8 @@ class UserLoginSerializer(serializers.Serializer):
                 'email': user.email,
                 # 'role': user.role,
             }
+
+            print('---00000', validation)
 
             return validation
         except User.DoesNotExist:

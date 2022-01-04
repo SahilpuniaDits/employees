@@ -1,3 +1,21 @@
+from rest_framework import status
+from .models import User
+import jwt
+from .serializers import (
+    UserRegistrationSerializer,
+    UserLoginSerializer,
+
+
+)
+from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.serializers import Serializer
+from rest_framework import response
+from rest_framework import serializers
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.shortcuts import render
 
 # Create your views here.
@@ -6,43 +24,28 @@ from django.shortcuts import render
 def login(request):
     return render(request, 'login.html')
 
+
 def signup(request):
     return render(request, 'signup.html')
 
-from rest_framework import status
-from rest_framework import serializers
-from rest_framework import response
-from rest_framework.serializers import Serializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.permissions import IsAuthenticated
+
 # from django.core.mail import EmailMultiAlternatives
 # import random
-from django.http import HttpResponse
 # from rest_framework.decorators import list_route
 
-from .serializers import (
-    UserRegistrationSerializer,
-    UserLoginSerializer,
-    
-   
-)
 # from utils import res_codes
-import jwt
-from .models import User
+
 
 class UserRegistrationView(APIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny, )
 
-    def post(self, request):        
+    def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()  
-            
+            serializer.save()
+
             status_code = status.HTTP_201_CREATED
-            
 
             response = {
                 'success': True,
@@ -52,6 +55,8 @@ class UserRegistrationView(APIView):
             }
 
             return Response(response, status=status_code)
+
+
 class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny, )
@@ -75,5 +80,6 @@ class UserLoginView(APIView):
                 }
             }
 
-            return Response(response, status=status_code)
+            print('--09-9-09-0909', response)
 
+            return Response(response)
