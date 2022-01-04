@@ -14,19 +14,29 @@
 <body>
     <!-- partial:index.partial.html -->
     <div class="login-form">
-        <form>
+        <form id="form">
+            {% csrf_token %}
             <h1>Signup</h1>
             <div class="content">
                 <div class="input-field">
                     <input id="Semail" type="email" placeholder="Email" autocomplete="nope">
                 </div>
                 <div class="input-field">
+<<<<<<< HEAD
                     <input id ="Spassword" type="password" placeholder="Password" autocomplete="new-password">
                 
             <div class="action">
                <button> <a href="{% url 'login' %}">Login</a> </button>
                 <button onclick="signup()">Signup</button>
             </div>
+=======
+                    <input id="Spassword" type="password" placeholder="Password" autocomplete="new-password">
+
+                    <div class="action">
+                        <button> <a href="{% url 'login' %}">Login</a> </button>
+                        <button onclick="signup()">Signup</button>
+                    </div>
+>>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
         </form>
     </div>
     <!-- partial -->

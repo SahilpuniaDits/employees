@@ -1,3 +1,21 @@
+from rest_framework import status
+from .models import User
+import jwt
+from .serializers import (
+    UserRegistrationSerializer,
+    UserLoginSerializer,
+
+
+)
+from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.serializers import Serializer
+from rest_framework import response
+from rest_framework import serializers
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.shortcuts import render
 
 # Create your views here.
@@ -6,9 +24,11 @@ from django.shortcuts import render
 def login(request):
     return render(request, 'login.html')
 
+
 def signup(request):
     return render(request, 'signup.html')
 
+<<<<<<< HEAD
 def deshboard(request):
     return render(request, 'index.html')
 def leaves(request):
@@ -22,11 +42,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.permissions import IsAuthenticated
+=======
+
+>>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
 # from django.core.mail import EmailMultiAlternatives
 # import random
-from django.http import HttpResponse
 # from rest_framework.decorators import list_route
 
+<<<<<<< HEAD
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
@@ -37,18 +60,21 @@ from .serializers import (
 # from utils import res_codes
 import jwt
 from .models import User,leave
+=======
+# from utils import res_codes
+
+>>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
 
 class UserRegistrationView(APIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny, )
 
-    def post(self, request):        
+    def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()  
-            
+            serializer.save()
+
             status_code = status.HTTP_201_CREATED
-            
 
             response = {
                 'success': True,
@@ -58,6 +84,8 @@ class UserRegistrationView(APIView):
             }
 
             return Response(response, status=status_code)
+
+
 class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny, )
@@ -81,8 +109,9 @@ class UserLoginView(APIView):
                 }
             }
 
-            return Response(response, status=status_code)
+            print('--09-9-09-0909', response)
 
+<<<<<<< HEAD
 
 class applyleaves(APIView):
     serializer_class = leaveSerializer
@@ -110,3 +139,6 @@ class applyleaves(APIView):
 
 
 
+=======
+            return Response(response)
+>>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c

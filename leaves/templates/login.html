@@ -14,7 +14,9 @@
 <body>
     <!-- partial:index.partial.html -->
     <div class="login-form">
-        <form>
+        <form id="form">
+            {% csrf_token %}
+
             <h1>Login</h1>
             <div class="content">
                 <div class="input-field">
@@ -27,7 +29,7 @@
             </div>
             <div class="action">
                 <button> <a href="{% url 'signup' %}">Register</a> </button>
-                <button onclick = "login()">Login</button>
+                <button onclick = "login2()">Login</button>
             </div>
         </form>
     </div>
