@@ -1,5 +1,12 @@
 
+from django.db.models import fields
+from .models import User,leave
+
+
+#
+
 from .models import User
+
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken, Token
 from django.contrib.auth import authenticate
@@ -66,3 +73,10 @@ class UserLoginSerializer(serializers.Serializer):
             return validation
         except User.DoesNotExist:
             raise serializers.ValidationError("Invalid login credentials")
+
+
+class leaveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = leave
+        fields = ("__all__")
+
