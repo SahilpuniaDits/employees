@@ -101,13 +101,13 @@ class UserLoginView(APIView):
                 'message': 'User logged in successfully',
                 'access': serializer.data['access'],
                 'refresh': serializer.data['refresh'],
-                'authenticatedUser': {
-                    'email': serializer.data['email'],
-                    # 'role': serializer.data['role']
-                }
+                # 'authenticatedUser': {
+                #     'email': serializer.data['email'],
+                #     'role': serializer.data['role']
+                # }
             }
-
-            print('--09-9-09-0909', response)
+            return Response(response)
+            # print('--09-9-09-0909', response)
 
 class applyleaves(APIView):
     serializer_class = leaveSerializer

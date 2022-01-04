@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 var email;
 var password;
 var email2;
@@ -94,4 +93,43 @@ function signup() {
 
 
 }
->>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
+var start_date;
+var end_date;
+var leave_Reason;
+var leave_commet;
+
+
+
+function leavesfatch() {
+    alert("aaaaaaaaa")
+    //var leave_type = document.getElementById("leavetype").value;
+    // var role = document.getElementById("role");
+    // var role_type = role.options[role.selectedIndex].text;
+    // console.log(role_type);
+    start_date = document.getElementById("sdate").value;
+    end_date = document.getElementById("edate").value;
+    leave_Reason = document.getElementById("reason").value;
+    leave_commet = document.getElementById("comt").value;
+
+
+
+
+    fetch("http://127.0.0.1:8000/api/leaves/", {
+            method: "POST",
+            body: JSON.stringify({
+                // leave_type: role_type,
+                // leave_description: leave_description,
+                startdate: start_date,
+                enddate: end_date,
+                reason : leave_Reason,
+                comments : leave_commet
+            }),
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+        .then(function(data) {
+            return data.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        });
+}
