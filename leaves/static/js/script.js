@@ -2,6 +2,8 @@
 var email1;
 var password1;
 
+
+
 var email2;
 var password2;
 
@@ -95,4 +97,41 @@ function signup() {
 
 
 
+}
+var start_date;
+var end_date;
+var leave_Reason;
+var leave_commet;
+
+
+
+function leavesfatch() {
+    alert("aaaaaaaaa")
+    
+    start_date = document.getElementById("sdate").value;
+    end_date = document.getElementById("edate").value;
+    leave_Reason = document.getElementById("reason").value;
+    leave_commet = document.getElementById("comt").value;
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+
+
+    fetch("http://127.0.0.1:8000/api/leaves/", {
+            method: "POST",
+            body: JSON.stringify({
+                
+                startdate: start_date,
+                enddate: end_date,
+                reason : leave_Reason,
+                comments : leave_commet
+            }),
+            headers: { "Content-type": "application/json; charset=UTF-8",
+                'X-CSRFToken': csrftoken },
+        })
+        .then(function(data) {
+            return data.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        });
 }

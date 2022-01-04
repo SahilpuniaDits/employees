@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +23,8 @@
   
       <div class="pagecontent" id="h">
 
-
+        <form id="form">
+          {% csrf_token %}
         <!-- Button trigger modal -->
         <div class="container">
           <button type="button" class="btn btn-danger  appoin" data-toggle="modal" data-target="#exampleModal"
@@ -47,23 +49,24 @@
 
                       <div class="form-group">
                           <span>Start Date</span>
-                        <input type="date" class="form-control" name="StartDate" placeholder="Start Date" required>
+                        <input type="date" class="form-control" name="StartDate" id = "sdate" placeholder="Start Date" required>
                       </div>
                       <div class="form-group">
                         <span>End Date</span>
-                        <input type="date" class="form-control" name="EndDate" placeholder="EndDate" required>
+                        <input type="date" class="form-control" name="EndDate" id = "edate"  placeholder="EndDate" required>
                       </div>
                       <div class="form-group">
                         <span>Reason of Leave</span>
-                        <input type="text" class="form-control" name="Reason" placeholder="Reason of Leave" required>
+                        <input type="text" class="form-control" name="Reason" id = "reason"  placeholder="Reason of Leave" required>
                       </div>
                       <div class="form-group">
                         <span>comments</span>
-                        <input type="text" class="form-control" name="comments" placeholder="comments" required>
+                        <input type="text" class="form-control" name="comments" id = "comt"  placeholder="comments" required>
                       </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary">Save</button>
+                  <!-- <button type="submit" class="btn btn-primary" onclick="leavesfatch()">Save</button> -->
+                  <button type="submit" class="btn btn-primary" onclick="leavesfatch()">Save</button>
                 </div>
               </div>
             </div>
@@ -79,6 +82,7 @@
         <div>
 
         </div>
+      </form>
       </div>
 
 
@@ -143,6 +147,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
