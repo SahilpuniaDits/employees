@@ -40,3 +40,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class leave(models.Model):
+  startdate = models.DateField()
+  enddate = models.DateField()
+  reason = models.CharField(max_length=100)
+  comments = models.CharField(max_length=100)

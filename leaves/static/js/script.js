@@ -30,8 +30,9 @@ function login(){
         .then(function (data) {
             alert(data)
             console.log(data.success);
-          
+           
             a = data.success;
+            console.log(a)
 
             if (a==true){
                 alert("1234")
@@ -40,12 +41,7 @@ function login(){
 
             else{
                 alert("You entered wrong username or password")
-            }
-
-
-           
-            
-           
+            } 
 
         })
 
@@ -57,10 +53,50 @@ function signup() {
     email2 = document.getElementById("Semail").value
     password2 = document.getElementById("Spassword").value
 
+    fetch("http://127.0.0.1:8000/api/register/", {
+
+        method: "POST",
+        body: JSON.stringify({
+            email: email2,
+            password: password2,
+        }),
+        headers: {
+            "content-type": "application/json ; charset=UTF-8"
+        },
+
+    })
+        .then(function (data) {
+           
+            console.log(data);
+            return data.json();
+        })
+        .then(function (data) {
+            alert(data)
+            console.log(data.success);
+          
+            a = data.success;
+            
+
+            if (a==true){
+                alert("1234")
+                location.href = "http://127.0.0.1:8000/login/"
+            }
+
+            else{
+                alert("You entered wrong username or password")
+            } 
+
+        })
+        // console.log(email2)
+        // console.log(password2)
+
+    }
+
+
     
 
-    console.log(email2)
-    console.log(password2)
-    console.log("arpan")
-    alert("??????????????")
-}
+//     console.log(email2)
+//     console.log(password2)
+//     console.log("arpan")
+//     alert("??????????????")
+// }
