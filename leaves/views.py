@@ -28,7 +28,7 @@ def login(request):
 def signup(request):
     return render(request, 'signup.html')
 
-<<<<<<< HEAD
+
 def deshboard(request):
     return render(request, 'index.html')
 def leaves(request):
@@ -42,14 +42,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.permissions import IsAuthenticated
-=======
 
->>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
+
 # from django.core.mail import EmailMultiAlternatives
 # import random
 # from rest_framework.decorators import list_route
 
-<<<<<<< HEAD
+
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
@@ -60,10 +59,9 @@ from .serializers import (
 # from utils import res_codes
 import jwt
 from .models import User,leave
-=======
+
 # from utils import res_codes
 
->>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
 
 class UserRegistrationView(APIView):
     serializer_class = UserRegistrationSerializer
@@ -111,8 +109,6 @@ class UserLoginView(APIView):
 
             print('--09-9-09-0909', response)
 
-<<<<<<< HEAD
-
 class applyleaves(APIView):
     serializer_class = leaveSerializer
     permission_class = (AllowAny, )
@@ -138,7 +134,3 @@ class applyleaves(APIView):
             return Response(response,status = status.HTTP_400_BAD_REQUEST)
 
 
-
-=======
-            return Response(response)
->>>>>>> 41abf34edadf650ce0e6db63ce8d52d13ccef08c
