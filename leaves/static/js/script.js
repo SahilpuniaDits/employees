@@ -57,6 +57,8 @@ function signup() {
     email2 = document.getElementById("Semail").value
     password2 = document.getElementById("Spassword").value
 
+    
+
     console.log(email2)
     console.log(password2)
     console.log("arpan")
