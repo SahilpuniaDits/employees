@@ -4,14 +4,16 @@ var password1;
 var email2;
 var password2;
 
-function login2() {
+async function login2() {
+    console.log("IN ME");
     email1 = document.getElementById("Lemail").value
     password1 = document.getElementById("Lpassword").value
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     console.log(email1)
     console.log(password1)
-    alert(csrftoken)
-    fetch("/api/login/", {
+
+    await fetch("http://127.0.0.1:8000/api/login/", {
+
         method: "POST",
         body: JSON.stringify({
             email: email1,
@@ -23,17 +25,19 @@ function login2() {
         },
     })
         .then(function (data) {
-            console.log(data);
-            alert(data.status)
+            console.log("READ", data);
+
             a = data.status;
+            console.log(a)
 
             if (a == 200) {
-                window.location.href = "https://www.youtube.com/";
+                window.location.href = "/deshboard";
             }
             else {
                 alert("enter correct username or password...")
             }
         })
+    return false;
 }
 
 
@@ -107,14 +111,10 @@ function leavesfatch() {
 
 var html = "";
 function fetchData() {
-<<<<<<< HEAD
+
 
     var html = "";
 
-    // alert("************************")
-=======
-    var html = "";
->>>>>>> 49a3251e0f8ce309d41e4e0e155661fa81f0fae7
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
         // method: "GET",
@@ -131,33 +131,6 @@ function fetchData() {
                 var id = data.id;
                 console.log(id);
                 html += `
-<<<<<<< HEAD
-                        <tr>
-                            <td>${data.id}</td>
-                            <td>${data.startdate}</td>
-                            <td>${data.enddate}</td>
-                            <td>${data.reason}</td>
-                            <td>${data.comments}</td>
-                                       
-                                         
-                                        <td>
-                                        
-                                                <button type="button"  class="btn btn-danger  appoin" data-id="${data.id}" data-toggle="modal" data-target="#exampleModal2">
-                                                    <i class="fa fa-pencil text-warning" ></i>
-                                                </button>
-                                           
-
-                                           
-                                              <a href = "">
-                                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
-                                                    <i class="fa fa-trash text-danger"></i>
-                                                </button>
-                                                </a>
-                                        </td>
-                          </tr> `;
-
-
-=======
                     <tr>
                         <td>${data.id}</td>
                         <td>${data.startdate}</td>
@@ -168,23 +141,22 @@ function fetchData() {
                             <button type="button"  class="btn btn-danger  appoin" onClick="editLeave(${id}),upDate(${id})" data-toggle="modal" data-target="#exampleModal2">
                                 <i class="fa fa-pencil text-warning" ></i>
                             </button>
-                        
+                        <a href="">
                             <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                 <i class="fa fa-trash text-danger"></i>
                             </button>
+                            </a>
                         </td>
                     </tr> `;
->>>>>>> 49a3251e0f8ce309d41e4e0e155661fa81f0fae7
+
             });
-            document.getElementById("table1").innerHTML = html;
+            // document.getElementById("table1").innerHTML = html;
         })
 
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 49a3251e0f8ce309d41e4e0e155661fa81f0fae7
+
 
 fetchData();
 
@@ -212,8 +184,6 @@ function deleteCategory(id) {
 
 
 
-<<<<<<< HEAD
-=======
 function editLeave(id) {
 
     fetch(`http://127.0.0.1:8000/api/leavesget/${id}`)
@@ -239,21 +209,23 @@ function updateAssign1(id) {
     // console.log(end_date)
 
     fetch(`http://127.0.0.1:8000/api/update/${id}/`, {
-            method: "PUT",
-            body: JSON.stringify({
-                startdate: startdate,
-                enddate: enddate,
-                reason: reason,
-                comments: comments,
-            }),
-            headers: { "Content-type": "application/json; charset=UTF-8",
-            'X-CSRFToken': csrftoken },
-        })
-        .then(function(data) {
+        method: "PUT",
+        body: JSON.stringify({
+            startdate: startdate,
+            enddate: enddate,
+            reason: reason,
+            comments: comments,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
+        .then(function (data) {
             return data.json();
         })
         // console.log(data)
-        .then(function(data) {
+        .then(function (data) {
             fetchData();
             console.log("updated", data);
         });
@@ -265,4 +237,4 @@ function upDate(id) {
     ).innerHTML = `<button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "updateAssign1(${id})">Save</button>
 `;
 }
->>>>>>> 49a3251e0f8ce309d41e4e0e155661fa81f0fae7
+
