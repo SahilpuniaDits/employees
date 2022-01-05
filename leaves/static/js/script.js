@@ -15,14 +15,14 @@ function login2() {
     password1 = document.getElementById("Lpassword").value
 
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    
+
     console.log(email1)
     console.log(password1)
 
     alert(csrftoken)
 
-    fetch("http://127.0.0.1:8000/api/login/", {
-        method: "post",
+    fetch("/api/login/", {
+        method: "POST",
         body: JSON.stringify({
             email: email1,
             password: password1
@@ -30,7 +30,7 @@ function login2() {
         headers: {
             "content-type": "application/json ; charset=UTF-8",
             'X-CSRFToken': csrftoken
-            
+
         },
 
     })
@@ -107,7 +107,7 @@ var leave_commet;
 
 function leavesfatch() {
     alert("aaaaaaaaa")
-    
+
     start_date = document.getElementById("sdate").value;
     end_date = document.getElementById("edate").value;
     leave_Reason = document.getElementById("reason").value;
@@ -117,21 +117,23 @@ function leavesfatch() {
 
 
     fetch("http://127.0.0.1:8000/api/leaves/", {
-            method: "POST",
-            body: JSON.stringify({
-                
-                startdate: start_date,
-                enddate: end_date,
-                reason : leave_Reason,
-                comments : leave_commet
-            }),
-            headers: { "Content-type": "application/json; charset=UTF-8",
-                'X-CSRFToken': csrftoken },
-        })
-        .then(function(data) {
+        method: "POST",
+        body: JSON.stringify({
+
+            startdate: start_date,
+            enddate: end_date,
+            reason: leave_Reason,
+            comments: leave_commet
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
+        .then(function (data) {
             return data.json();
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data);
         });
 }
@@ -139,15 +141,17 @@ function leavesfatch() {
 
 var html = "";
 function fetchData() {
-    alert("************************")
+    // alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    
+
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
         // method: "GET",
-        headers: { "Content-type": "application/json; charset=UTF-8",
-        'X-CSRFToken': csrftoken },
-        })
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -172,19 +176,42 @@ function fetchData() {
                                             </a>
                                            
                                             <a href="">
-                                                <button type="button" class="btn mx-1">
+                                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                                     <i class="fa fa-trash text-danger"></i>
                                                 </button>
                                             </a>
                                         </td>
                           </tr> `;
 
-               
+
             });
             document.getElementById("table1").innerHTML = html;
-        
+
         })
-       
+
 
 }
 fetchData();
+
+
+
+function deleteCategory(id) {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            alert("Do you want to Delete this data?");
+            showCategory();
+            console.log(data)
+
+        });
+}
