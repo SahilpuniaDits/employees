@@ -39,14 +39,7 @@ def leaves(request):
     return render(request, 'leaves.html')
 
 
-# from django.core.mail import EmailMultiAlternatives
-# import random
-# from rest_framework.decorators import list_route
 
-
-# from utils import res_codes
-
-# from utils import res_codes
 
 
 class UserRegistrationView(APIView):
@@ -124,9 +117,11 @@ class applyleaves(APIView):
                 'massage': 'please enter correct input',
                 'user': serializer.data
             }
+
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
-            # return Response(response,status = status.HTTP_400_BAD_REQUEST)
+        
+
 
 class leavesget(APIView):
     def get(self,request):
