@@ -38,10 +38,6 @@ def deshboard(request):
 def leaves(request):
     return render(request, 'leaves.html')
 
-
-
-
-
 class UserRegistrationView(APIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny, )

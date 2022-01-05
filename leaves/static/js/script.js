@@ -4,26 +4,16 @@ var password1;
 var email2;
 var password2;
 
-<<<<<<< HEAD
-function login2() {
+
+
     // debugger;
-=======
 async function login2() {
-    console.log("IN ME");
->>>>>>> aaeb7a85246a02d3a03a111e299a352b52749a13
     email1 = document.getElementById("Lemail").value
     password1 = document.getElementById("Lpassword").value
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     console.log(email1)
     console.log(password1)
-<<<<<<< HEAD
-    alert(csrftoken)
-    fetch("http://127.0.0.1:8000/api/login/", {
-=======
-
     await fetch("http://127.0.0.1:8000/api/login/", {
-
->>>>>>> aaeb7a85246a02d3a03a111e299a352b52749a13
         method: "POST",
         body: JSON.stringify({
             email: email1,
@@ -151,24 +141,16 @@ function fetchData() {
                             <button type="button"  class="btn btn-danger  appoin" onClick="editLeave(${id}),upDate(${id})" data-toggle="modal" data-target="#exampleModal2">
                                 <i class="fa fa-pencil text-warning" ></i>
                             </button>
-<<<<<<< HEAD
-                        <a href = "">
-                            <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
-                                <i class="fa fa-trash text-danger"></i>
-                            </button>
-                        </a>
-=======
                         <a href="">
                             <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                 <i class="fa fa-trash text-danger"></i>
                             </button>
                             </a>
->>>>>>> aaeb7a85246a02d3a03a111e299a352b52749a13
                         </td>
                     </tr> `;
 
             });
-            // document.getElementById("table1").innerHTML = html;
+            document.getElementById("table1").innerHTML = html;
         })
 
 }
@@ -255,4 +237,3 @@ function upDate(id) {
     ).innerHTML = `<button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "updateAssign1(${id})">Save</button>
 `;
 }
-
