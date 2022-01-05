@@ -1,6 +1,9 @@
 
-var email;
-var password;
+var email1;
+var password1;
+
+
+
 var email2;
 var password2;
 
@@ -8,24 +11,26 @@ var password2;
 
 function login2() {
 
-    const email = document.getElementById("Lemail").value
-    const password = document.getElementById("Lpassword").value
+    email1 = document.getElementById("Lemail").value
+    password1 = document.getElementById("Lpassword").value
+
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    console.log(email)
-    console.log(password)
+    
+    console.log(email1)
+    console.log(password1)
 
     alert(csrftoken)
 
     fetch("http://127.0.0.1:8000/api/login/", {
         method: "post",
         body: JSON.stringify({
-            'email': email,
-            'password': password,
+            email: email1,
+            password: password1
         }),
         headers: {
             "content-type": "application/json ; charset=UTF-8",
-            'X-CSRFToken': csrftoken,
-            'Accept': 'application/json',
+            'X-CSRFToken': csrftoken
+            
         },
 
     })
@@ -102,29 +107,26 @@ var leave_commet;
 
 function leavesfatch() {
     alert("aaaaaaaaa")
-    //var leave_type = document.getElementById("leavetype").value;
-    // var role = document.getElementById("role");
-    // var role_type = role.options[role.selectedIndex].text;
-    // console.log(role_type);
+    
     start_date = document.getElementById("sdate").value;
     end_date = document.getElementById("edate").value;
     leave_Reason = document.getElementById("reason").value;
     leave_commet = document.getElementById("comt").value;
-
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 
 
     fetch("http://127.0.0.1:8000/api/leaves/", {
             method: "POST",
             body: JSON.stringify({
-                // leave_type: role_type,
-                // leave_description: leave_description,
+                
                 startdate: start_date,
                 enddate: end_date,
                 reason : leave_Reason,
                 comments : leave_commet
             }),
-            headers: { "Content-type": "application/json; charset=UTF-8" },
+            headers: { "Content-type": "application/json; charset=UTF-8",
+                'X-CSRFToken': csrftoken },
         })
         .then(function(data) {
             return data.json();
@@ -133,3 +135,57 @@ function leavesfatch() {
             console.log(data);
         });
 }
+
+
+var html = "";
+function fetchData() {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    alert("************************")
+    fetch(`http://127.0.0.1:8000/api/leavesget/`, {
+            headers: {
+                "Content-Type": "application/json",
+                'X-CSRFToken': csrftoken
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            data.forEach((data) => {
+                console.log(data);
+                var id = data.id;
+                console.log(id);
+                html += `
+                        <tr>
+                            <td>${data.id}</td>
+                            <td>${data.startdate}</td>
+                            <td>${data.enddate}</td>
+                            <td>${data.reason}</td>
+                            <td>${data.comments}</td>
+                                       
+                                         
+                                        <td>
+                                            <a href="">
+                                                <button type="button" class="btn mx-1">
+                                                    <i class="fa fa-pencil text-warning"></i>
+                                                </button>
+                                            </a>
+                                           
+                                            <a href="">
+                                                <button type="button" class="btn mx-1">
+                                                    <i class="fa fa-trash text-danger"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                          </tr> `;
+
+               
+            });
+            document.getElementById("table1").innerHTML = html;
+        
+        })
+       
+
+}
+// fetchData();

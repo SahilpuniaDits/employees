@@ -10,6 +10,8 @@ urlpatterns = [
     path('api/register', UserRegistrationView.as_view(), name='register'),
     path('api/login/', UserLoginView.as_view(), name='login1'),
     path('api/leaves/', applyleaves.as_view(), name='leave'),
+    path('api/leavesget/', leavesget.as_view(), name='leavesget'),
+    path('api/leaves/<int:id>/', leavesUpdate.as_view(), name='leave'),
 
     
 ]

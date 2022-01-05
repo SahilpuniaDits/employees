@@ -23,7 +23,8 @@
   
       <div class="pagecontent" id="h">
 
-        <form >
+        <form>
+
           {% csrf_token %}
         <!-- Button trigger modal -->
         <div class="container">
@@ -89,54 +90,29 @@
 
 
       <div>
-        <table class="table table-striped" style="line-height: 27px; margin-block-start: 77px; width: 100%;">
+        <form>
+          {% csrf_token %}
+        <table class="table table-striped"  style="line-height: 27px; margin-block-start: 77px; width: 100%;">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Start Date </th>
-              <th scope="col">End Date </th>
-              <th scope="col">Reason of leave</th>
-              <th scope="col">comments</th>
-             
-            </tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Start Date </th>
+                    <th scope="col">End Date </th>
+                    <th scope="col">Reason of leave</th>
+                    <th scope="col">comments</th>
+                    <th scope="col">Action</th>
+                    </tr>
           </thead>
-                  <tbody>
-                        <tr>
-                                        <td>1</td>
-                                        <td>Ms.liza</td>
-                                        <td>Mr.swat</td>
-                                        <td>02-11-2021</td>
-                                       
-                                         
-                                        <td>
-                                            <a href="">
-                                                <button type="button" class="btn mx-1">
-                                                    <i class="fa fa-pencil text-warning"></i>
-                                                </button>
-                                            </a>
-                                           
-                                            <a href="">
-                                                <button type="button" class="btn mx-1">
-                                                    <i class="fa fa-trash text-danger"></i>
-                                                </button>
-                                            </a>
-                                        </td>
-                          </tr>
+                  <tbody id = "table1">
+                       
 
                   </tbody>
         </table>
+      </form>
       </div>
     </div>
   </div>
-  <!-- <script>
-    $(document).ready(function () {
-      $(".menu-item").click(function () { });
-    });
-    function Appoinment(ele, e) {
-      e.preventDefault();
-      $("#h").load($(ele).attr("href"));
-    }
-  </script> -->
+  
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

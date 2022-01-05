@@ -24,7 +24,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{% url 'leaves' %}" onclick = "fetchData();">
             <i class='bx bx-box' ></i>
             <span class="links_name">Leave</span>
           </a>
@@ -94,6 +94,7 @@ sidebarBtn.onclick = function() {
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
  </script>
+ <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>
