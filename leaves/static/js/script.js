@@ -5,13 +5,14 @@ var email2;
 var password2;
 
 function login2() {
+    // debugger;
     email1 = document.getElementById("Lemail").value
     password1 = document.getElementById("Lpassword").value
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     console.log(email1)
     console.log(password1)
     alert(csrftoken)
-    fetch("/api/login/", {
+    fetch("http://127.0.0.1:8000/api/login/", {
         method: "POST",
         body: JSON.stringify({
             email: email1,
@@ -133,10 +134,11 @@ function fetchData() {
                             <button type="button"  class="btn btn-danger  appoin" onClick="editLeave(${id}),upDate(${id})" data-toggle="modal" data-target="#exampleModal2">
                                 <i class="fa fa-pencil text-warning" ></i>
                             </button>
-                        
+                        <a href = "">
                             <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                 <i class="fa fa-trash text-danger"></i>
                             </button>
+                        </a>
                         </td>
                     </tr> `;
             });

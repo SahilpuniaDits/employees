@@ -66,10 +66,9 @@ class UserLoginSerializer(serializers.Serializer):
                 'access': access_token,
                 'refresh': refresh_token,
                 'email': user.email,
-
             }
 
-            print('---00000', validation)
+            # print('---00000', validation)
 
             return validation
         except User.DoesNotExist:

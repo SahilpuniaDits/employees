@@ -66,15 +66,9 @@ class UserRegistrationView(APIView):
 class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
     permission_classes = (AllowAny, )
-
     def post(self, request):
-        print('hyere ---here---here---here',
-        self.serializer_class(data=request.data))
         serializer = self.serializer_class(data=request.data)
         valid = serializer.is_valid(raise_exception=True)
-
-    
-
         if valid:
             status_code = status.HTTP_200_OK
 
