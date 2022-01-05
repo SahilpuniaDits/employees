@@ -102,7 +102,6 @@ var leave_commet;
 
 
 function leavesfatch() {
-    alert("aaaaaaaaa")
 
     start_date = document.getElementById("sdate").value;
     end_date = document.getElementById("edate").value;
@@ -110,12 +109,9 @@ function leavesfatch() {
     leave_commet = document.getElementById("comt").value;
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-
-
-    fetch("http://127.0.0.1:8000/api/leaves/", {
+    fetch("http://127.0.0.1:8000/api/applyleaves/", {
         method: "POST",
         body: JSON.stringify({
-
             startdate: start_date,
             enddate: end_date,
             reason: leave_Reason,
@@ -134,11 +130,12 @@ function leavesfatch() {
         });
 }
 
-fetchData()
+
 
 var html = "";
 
 function fetchData() {
+    var html = "";
     // alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
@@ -169,17 +166,14 @@ function fetchData() {
                                        
                                          
                                         <td>
-                                            <a href="">
-                                                <button type="button"  class="btn btn-danger  appoin"  data-toggle="modal" data-target="#exampleModal2">
+                                        
+                                                <button type="button"  class="btn btn-danger  appoin" data-id="${data.id}" data-toggle="modal" data-target="#exampleModal2">
                                                     <i class="fa fa-pencil text-warning" ></i>
                                                 </button>
-                                            </a>
                                            
-                                            <a href="">
                                                 <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                                     <i class="fa fa-trash text-danger"></i>
                                                 </button>
-                                            </a>
                                         </td>
                           </tr> `;
 
@@ -188,7 +182,6 @@ function fetchData() {
             document.getElementById("table1").innerHTML = html;
 
         })
-
 
 }
 
@@ -216,6 +209,3 @@ function deleteCategory(id) {
 
         });
 }
-
-// fetchData();
-
