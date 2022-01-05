@@ -139,15 +139,14 @@ function leavesfatch() {
 
 var html = "";
 function fetchData() {
+    alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    alert("************************")
+    
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
-            headers: {
-                "Content-Type": "application/json",
-                'X-CSRFToken': csrftoken
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
+        // method: "GET",
+        headers: { "Content-type": "application/json; charset=UTF-8",
+        'X-CSRFToken': csrftoken },
         })
         .then((response) => response.json())
         .then((data) => {
@@ -188,4 +187,4 @@ function fetchData() {
        
 
 }
-// fetchData();
+fetchData();
