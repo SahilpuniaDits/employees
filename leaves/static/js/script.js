@@ -2,12 +2,8 @@
 var email1;
 var password1;
 
-
-
 var email2;
 var password2;
-
-
 
 function login2() {
 
@@ -138,8 +134,10 @@ function leavesfatch() {
         });
 }
 
+fetchData()
 
 var html = "";
+
 function fetchData() {
     // alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -150,6 +148,8 @@ function fetchData() {
         headers: {
             "Content-type": "application/json; charset=UTF-8",
             'X-CSRFToken': csrftoken
+
+
         },
     })
         .then((response) => response.json())
@@ -170,8 +170,8 @@ function fetchData() {
                                          
                                         <td>
                                             <a href="">
-                                                <button type="button" class="btn mx-1">
-                                                    <i class="fa fa-pencil text-warning"></i>
+                                                <button type="button"  class="btn btn-danger  appoin"  data-toggle="modal" data-target="#exampleModal2">
+                                                    <i class="fa fa-pencil text-warning" ></i>
                                                 </button>
                                             </a>
                                            
@@ -191,6 +191,7 @@ function fetchData() {
 
 
 }
+
 fetchData();
 
 
@@ -215,3 +216,6 @@ function deleteCategory(id) {
 
         });
 }
+
+// fetchData();
+

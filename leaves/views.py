@@ -118,17 +118,13 @@ class applyleaves(APIView):
                 'user': serializer.data
             }
 
+
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-        
-
-
 class leavesget(APIView):
     def get(self,request):
         dataleave = leave.objects.all()
         serializer = leaveSerializer(dataleave,many = True)
         return Response(serializer.data)
-
 class leavegetid(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
@@ -136,9 +132,6 @@ class leavegetid(APIView):
         getid = self.get_object(id=id)
         serializer = leaveSerializer(getid)
         return Response(serializer.data)
-
-
-
 class leavesUpdate(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
@@ -148,8 +141,6 @@ class leavesUpdate(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
-
 class leavesDelete(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
@@ -157,7 +148,3 @@ class leavesDelete(APIView):
         leavedelete = self.get_object(id)
         leavedelete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
