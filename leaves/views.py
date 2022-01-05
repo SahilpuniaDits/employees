@@ -124,4 +124,28 @@ class applyleaves(APIView):
                 'massage': 'please enter correct input',
                 'user': serializer.data
             }
+<<<<<<< HEAD
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
+=======
+            return Response(response,status = status.HTTP_400_BAD_REQUEST)
+
+class leavesget(APIView):
+    def get(self,request):
+        dataleave = leave.objects.all()
+        serializer = leaveSerializer(dataleave,many = True)
+        return Response(serializer.data)
+
+
+class leavesUpdate(APIView):
+    def get_object(self,id):
+        return leave.objects.get(id=id)
+    def put(self,request,id):
+        leave = self.get_object(id)
+        serializer = leaveSerializer(leave,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+
+
+>>>>>>> 99fbc431790eef86764c0ab49982fa7bede24925

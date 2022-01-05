@@ -137,3 +137,57 @@ function leavesfatch() {
             console.log(data);
         });
 }
+
+
+var html = "";
+function fetchData() {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    alert("************************")
+    fetch(`http://127.0.0.1:8000/api/leavesget/`, {
+            headers: {
+                "Content-Type": "application/json",
+                'X-CSRFToken': csrftoken
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            data.forEach((data) => {
+                console.log(data);
+                var id = data.id;
+                console.log(id);
+                html += `
+                        <tr>
+                            <td>${data.id}</td>
+                            <td>${data.startdate}</td>
+                            <td>${data.enddate}</td>
+                            <td>${data.reason}</td>
+                            <td>${data.comments}</td>
+                                       
+                                         
+                                        <td>
+                                            <a href="">
+                                                <button type="button" class="btn mx-1">
+                                                    <i class="fa fa-pencil text-warning"></i>
+                                                </button>
+                                            </a>
+                                           
+                                            <a href="">
+                                                <button type="button" class="btn mx-1">
+                                                    <i class="fa fa-trash text-danger"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                          </tr> `;
+
+               
+            });
+            document.getElementById("table1").innerHTML = html;
+        
+        })
+       
+
+}
+// fetchData();
