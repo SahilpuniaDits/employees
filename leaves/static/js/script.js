@@ -2,12 +2,8 @@
 var email1;
 var password1;
 
-
-
 var email2;
 var password2;
-
-
 
 function login2() {
 
@@ -138,19 +134,21 @@ function leavesfatch() {
         });
 }
 
+fetchData()
 
 var html = "";
+
 function fetchData() {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    alert("************************")
+
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
-            headers: {
-                "Content-Type": "application/json",
-                'X-CSRFToken': csrftoken
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        })
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+
+        },
+    })
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -169,8 +167,8 @@ function fetchData() {
                                          
                                         <td>
                                             <a href="">
-                                                <button type="button" class="btn mx-1">
-                                                    <i class="fa fa-pencil text-warning"></i>
+                                                <button type="button"  class="btn btn-danger  appoin"  data-toggle="modal" data-target="#exampleModal2">
+                                                    <i class="fa fa-pencil text-warning" ></i>
                                                 </button>
                                             </a>
                                            
@@ -182,12 +180,13 @@ function fetchData() {
                                         </td>
                           </tr> `;
 
-               
+
             });
             document.getElementById("table1").innerHTML = html;
-        
+
         })
-       
+
 
 }
 // fetchData();
+
