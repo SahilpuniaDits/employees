@@ -69,11 +69,11 @@ class UserLoginView(APIView):
 
     def post(self, request):
         print('hyere ---here---here---here',
-              self.serializer_class(data=request.data))
+        self.serializer_class(data=request.data))
         serializer = self.serializer_class(data=request.data)
         valid = serializer.is_valid(raise_exception=True)
 
-        print('hyere ---', serializer)
+    
 
         if valid:
             status_code = status.HTTP_200_OK
@@ -90,20 +90,17 @@ class UserLoginView(APIView):
                 # }
             }
 
-            print('--09-9-09-0909', response)
             return Response(response)
 
 
 class applyleaves(APIView):
     serializer_class = leaveSerializer
     permission_class = (AllowAny, )
-
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             status_code = status.HTTP_201_CREATED
-
             response = {
                 'success': True,
                 'status': status_code,
@@ -117,8 +114,6 @@ class applyleaves(APIView):
                 'massage': 'please enter correct input',
                 'user': serializer.data
             }
-
-
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 class leavesget(APIView):
     def get(self,request):
