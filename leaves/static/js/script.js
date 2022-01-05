@@ -139,13 +139,16 @@ fetchData()
 var html = "";
 
 function fetchData() {
+    // alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
 
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
+        // method: "GET",
         headers: {
-            "Content-Type": "application/json; charset=UTF-8",
+            "Content-type": "application/json; charset=UTF-8",
             'X-CSRFToken': csrftoken
+
 
         },
     })
@@ -173,7 +176,7 @@ function fetchData() {
                                             </a>
                                            
                                             <a href="">
-                                                <button type="button" class="btn mx-1">
+                                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
                                                     <i class="fa fa-trash text-danger"></i>
                                                 </button>
                                             </a>
@@ -188,5 +191,31 @@ function fetchData() {
 
 
 }
+
+fetchData();
+
+
+
+function deleteCategory(id) {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            alert("Do you want to Delete this data?");
+            showCategory();
+            console.log(data)
+
+        });
+}
+
 // fetchData();
 

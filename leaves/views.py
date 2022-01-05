@@ -39,14 +39,7 @@ def leaves(request):
     return render(request, 'leaves.html')
 
 
-# from django.core.mail import EmailMultiAlternatives
-# import random
-# from rest_framework.decorators import list_route
 
-
-# from utils import res_codes
-
-# from utils import res_codes
 
 
 class UserRegistrationView(APIView):
@@ -124,27 +117,34 @@ class applyleaves(APIView):
                 'massage': 'please enter correct input',
                 'user': serializer.data
             }
-            
+
+
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-
 class leavesget(APIView):
     def get(self,request):
         dataleave = leave.objects.all()
         serializer = leaveSerializer(dataleave,many = True)
         return Response(serializer.data)
-
-
+class leavegetid(APIView):
+    def get_object(self,id):
+        return leave.objects.get(id=id)
+    def get(self,request,id):
+        getid = self.get_object(id=id)
+        serializer = leaveSerializer(getid)
+        return Response(serializer.data)
 class leavesUpdate(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
     def put(self,request,id):
         leave = self.get_object(id)
         serializer = leaveSerializer(leave,data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
-
-
-
+class leavesDelete(APIView):
+    def get_object(self,id):
+        return leave.objects.get(id=id)
+    def delete(self,request,id):
+        leavedelete = self.get_object(id)
+        leavedelete.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
