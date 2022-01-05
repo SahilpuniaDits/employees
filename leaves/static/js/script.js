@@ -38,7 +38,6 @@ function login2() {
 
 
 
-
 function signup() {
     email2 = document.getElementById("Semail").value
     password2 = document.getElementById("Spassword").value
@@ -105,7 +104,6 @@ function leavesfatch() {
         });
 }
 
-
 var html = "";
 function fetchData() {
     var html = "";
@@ -130,59 +128,25 @@ function fetchData() {
                         <td>${data.startdate}</td>
                         <td>${data.enddate}</td>
                         <td>${data.reason}</td>
-                        <td>${data.comments}</td>                                  
+                        <td>${data.comments}</td>                                      
                         <td>
-                            <a href="">
-                                <button type="button"  class="btn btn-danger  appoin"  data-toggle="modal">
-                                    <i class="fa fa-pencil text-warning" ></i>
-                                </button>
-                            </a>                          
-                            <a href="">
-                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
-                                    <i class="fa fa-trash text-danger"></i>
-                                </button>
-                            </a>
+                            <button type="button"  class="btn btn-danger  appoin" onClick="editLeave(${id}),upDate(${id})" data-toggle="modal" data-target="#exampleModal2">
+                                <i class="fa fa-pencil text-warning" ></i>
+                            </button>
+                        
+                            <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
+                                <i class="fa fa-trash text-danger"></i>
+                            </button>
                         </td>
                     </tr> `;
-
-                        <tr>
-                            <td>${data.id}</td>
-                            <td>${data.startdate}</td>
-                            <td>${data.enddate}</td>
-                            <td>${data.reason}</td>
-                            <td>${data.comments}</td>
-                                       
-                                         
-                                        <td>
-                                        
-                                                <button type="button"  class="btn btn-danger  appoin" data-id="${data.id}" data-toggle="modal" data-target="#exampleModal2">
-                                                    <i class="fa fa-pencil text-warning" ></i>
-                                                </button>
-                                           
-<<<<<<< HEAD
-=======
-                                            <a href="">
->>>>>>> b0ce56341f3dfa156e633d46896a40afec970d66
-                                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
-                                                    <i class="fa fa-trash text-danger"></i>
-                                                </button>
-                                        </td>
-                          </tr> `;
-
-
->>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
             });
             document.getElementById("table1").innerHTML = html;
         })
-<<<<<<< HEAD
-}
-=======
 
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
+
+
 fetchData();
 
 
@@ -207,34 +171,56 @@ function deleteCategory(id) {
         });
 }
 
-<<<<<<< HEAD
-
-=======
-// fetchData();
->>>>>>> b0ce56341f3dfa156e633d46896a40afec970d66
->>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
-
-fetchData();
 
 
+function editLeave(id) {
 
-function deleteCategory(id) {
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-    fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            'X-CSRFToken': csrftoken
-        },
-    })
-        .then((res) => {
-            return res.json();
+    fetch(`http://127.0.0.1:8000/api/leavesget/${id}`)
+        .then((response) => {
+            return response.json();
         })
         .then((data) => {
-            alert("Do you want to Delete this data?");
-            showCategory();
-            console.log(data)
-
+            document.getElementById("sdate2").value = data.startdate;
+            document.getElementById("edate2").value = data.enddate;
+            document.getElementById("reason2").value = data.reason;
+            document.getElementById("comt2").value = data.comments;
         });
+}
+
+function updateAssign1(id) {
+    var startdate = document.getElementById("sdate2").value;
+    var enddate = document.getElementById("edate2").value;
+    var reason = document.getElementById("reason2").value;
+    // console.log(start_date)
+    comments = document.getElementById("comt2").value;
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // console.log(end_date)
+
+    fetch(`http://127.0.0.1:8000/api/update/${id}/`, {
+            method: "PUT",
+            body: JSON.stringify({
+                startdate: startdate,
+                enddate: enddate,
+                reason: reason,
+                comments: comments,
+            }),
+            headers: { "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken },
+        })
+        .then(function(data) {
+            return data.json();
+        })
+        // console.log(data)
+        .then(function(data) {
+            fetchData();
+            console.log("updated", data);
+        });
+}
+
+function upDate(id) {
+    document.getElementById(
+        "upDate"
+    ).innerHTML = `<button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "updateAssign1(${id})">Save</button>
+`;
 }
