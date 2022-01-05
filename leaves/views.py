@@ -114,6 +114,8 @@ class leavesget(APIView):
         dataleave = leave.objects.all()
         serializer = leaveSerializer(dataleave,many = True)
         return Response(serializer.data)
+    
+    
 class leavegetid(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
@@ -121,6 +123,8 @@ class leavegetid(APIView):
         getid = self.get_object(id=id)
         serializer = leaveSerializer(getid)
         return Response(serializer.data)
+    
+    
 class leavesUpdate(APIView):
     def get_object(self,id):
         return leave.objects.get(id=id)
