@@ -29,6 +29,7 @@
     background-color: #008bb0; border-color:#008bb0 ;">
           Apply Leaves
         </button>
+<<<<<<< HEAD
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -106,7 +107,92 @@
   </div>
 </div>
 <!-- Modal Update -->
+=======
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!--    <h5 class="modal-title" id="exampleModalLabel">Add Appoinment</h5> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form name="registration" id="registration" method="post">
+                  <fieldset>
+>>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
 
+                    <div class="form-group">
+                      <span>Start Date</span>
+                      <input type="date" class="form-control" name="StartDate" id="sdate" placeholder="Start Date"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <span>End Date</span>
+                      <input type="date" class="form-control" name="EndDate" id="edate" placeholder="EndDate" required>
+                    </div>
+                    <div class="form-group">
+                      <span>Reason of Leave</span>
+                      <input type="text" class="form-control" name="Reason" id="reason" placeholder="Reason of Leave"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <span>comments</span>
+                      <input type="text" class="form-control" name="comments" id="comt" placeholder="comments" required>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="submit" class="btn btn-primary" onclick="leavesfatch()">Save</button> -->
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="leavesfatch(), fetchData()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ******************** -->
+        <!-- Modal Update -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form name="registration" id="registration2" method="post">
+                  <fieldset>
+
+                    <div class="form-group">
+                      <span>Start Date</span>
+                      <input type="date" class="form-control" name="StartDate" id="sdate2" placeholder="Start Date"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <span>End Date</span>
+                      <input type="date" class="form-control" name="EndDate" id="edate2" placeholder="EndDate" required>
+                    </div>
+                    <div class="form-group">
+                      <span>Reason of Leave</span>
+                      <input type="text" class="form-control" name="Reason" id="reason2" placeholder="Reason of Leave"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <span>comments</span>
+                      <input type="text" class="form-control" name="comments" id="comt2" placeholder="comments"
+                        required>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Update -->
       </div>
     </form>
   </div>
@@ -143,6 +229,7 @@
   <script src="{% static 'js/script.js' %}"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
 
 <!-- Modal -->
@@ -150,3 +237,6 @@
 
 
 <!-- ******************** -->
+=======
+</html>
+>>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc

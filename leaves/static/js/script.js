@@ -78,16 +78,15 @@ var leave_Reason;
 var leave_commet;
 
 function leavesfatch() {
-    // alert("aaaaaaaaa")
     start_date = document.getElementById("sdate").value;
     end_date = document.getElementById("edate").value;
     leave_Reason = document.getElementById("reason").value;
     leave_commet = document.getElementById("comt").value;
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
     fetch("http://127.0.0.1:8000/api/applyleaves/", {
         method: "POST",
         body: JSON.stringify({
-
             startdate: start_date,
             enddate: end_date,
             reason: leave_Reason,
@@ -110,7 +109,6 @@ function leavesfatch() {
 var html = "";
 function fetchData() {
     var html = "";
-    // alert("************************")
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     fetch(`http://127.0.0.1:8000/api/leavesget/`, {
         // method: "GET",
@@ -146,10 +144,45 @@ function fetchData() {
                             </a>
                         </td>
                     </tr> `;
+
+                        <tr>
+                            <td>${data.id}</td>
+                            <td>${data.startdate}</td>
+                            <td>${data.enddate}</td>
+                            <td>${data.reason}</td>
+                            <td>${data.comments}</td>
+                                       
+                                         
+                                        <td>
+                                        
+                                                <button type="button"  class="btn btn-danger  appoin" data-id="${data.id}" data-toggle="modal" data-target="#exampleModal2">
+                                                    <i class="fa fa-pencil text-warning" ></i>
+                                                </button>
+                                           
+<<<<<<< HEAD
+=======
+                                            <a href="">
+>>>>>>> b0ce56341f3dfa156e633d46896a40afec970d66
+                                                <button type="button" class="btn mx-1" onclick = "deleteCategory(${id})">
+                                                    <i class="fa fa-trash text-danger"></i>
+                                                </button>
+                                        </td>
+                          </tr> `;
+
+
+>>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
             });
             document.getElementById("table1").innerHTML = html;
         })
+<<<<<<< HEAD
 }
+=======
+
+}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
 fetchData();
 
 
@@ -174,5 +207,34 @@ function deleteCategory(id) {
         });
 }
 
+<<<<<<< HEAD
+
+=======
+// fetchData();
+>>>>>>> b0ce56341f3dfa156e633d46896a40afec970d66
+>>>>>>> 1f9a55458b6e7043bfe3e12d348dd06eac91dbbc
+
+fetchData();
 
 
+
+function deleteCategory(id) {
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken
+        },
+    })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            alert("Do you want to Delete this data?");
+            showCategory();
+            console.log(data)
+
+        });
+}
