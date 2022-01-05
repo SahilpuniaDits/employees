@@ -71,6 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'employees.wsgi.application'
 
+LOGIN_REDIRECT_URL = 'https:/www.youtube.com/'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

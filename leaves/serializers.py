@@ -1,6 +1,6 @@
 
 from django.db.models import fields
-from .models import User,leave
+from .models import User, leave
 
 
 #
@@ -52,6 +52,7 @@ class UserLoginSerializer(serializers.Serializer):
         user = authenticate(email=email, password=password)
 
         if user is None:
+            print('here----9')
             raise serializers.ValidationError("Invalid login credentials")
 
         try:
@@ -65,7 +66,7 @@ class UserLoginSerializer(serializers.Serializer):
                 'access': access_token,
                 'refresh': refresh_token,
                 'email': user.email,
-               
+
             }
 
             print('---00000', validation)
@@ -79,4 +80,3 @@ class leaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = leave
         fields = ("__all__")
-
